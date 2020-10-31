@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rover Image Viewer</title>
+</head>
+<body>
+<h1>Rover Image Viewer thyme</h1>
+<form method="POST" action="roverimageviewer">
+    <table>
+        <input type="submit" value="Clear Images" />
+    </table>
+</form>
+<table>
+    <tr th:each="image : ${images}">
+        <td><img th:src="'data:image/jpeg;base64,' + ${roverImageViewerService.getImgData(image)}" /></td>
+    </tr>
+</table>
+<a href="roverimagecache">Back</a>
+</body>
+</html>
