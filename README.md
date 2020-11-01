@@ -9,3 +9,7 @@ I noticed that with my primitive way of downloading these images, I ran into iss
 I also opted to store the images in a database, and served them up directly from there. I was asked if I knew about Spring Data and so I implemented this with h2 as a proof-of-concept to showcase that I did, but given the problem statement it would have been much easier to just download and store the files on disk in a static directory and serve them from there.
 
 I am also not too familiar with Docker (I plan on taking a Docker course), but I was able to create a tomcat docker container and deploy the webapp by copying the .war file to the webapps directory.
+
+I've included my .idea project directory for Intellij. I am not sure if that copies my run configurations.
+
+Lastly, I hard-coded my Nasa API key. I wasn't sure what the best way of making this configurable was. I could work it into a properties file somehow or I could have exposed it as a setting on the webapp so that the user could configure it but for simplicity it is hard-coded.
