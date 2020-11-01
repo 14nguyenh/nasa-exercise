@@ -29,7 +29,8 @@ import java.util.List;
 public class RoverImageCacheService
 {
     final private RestTemplate restTemplate;
-    final private String API_KEY = "U3tfCOCb5DLfDYwigssrxkZDYKMUpfQloQbZHxDV";
+    //final private String API_KEY = "U3tfCOCb5DLfDYwigssrxkZDYKMUpfQloQbZHxDV";
+    final private String API_KEY = "BQ8zKkZTwVOQ9Y3UVLNLMeFObr4nMEXAhf5eCw5h";
     final private String MARS_PHOTOS_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
     final private RoverImageRepository roverImageRepository;
 
@@ -70,6 +71,11 @@ public class RoverImageCacheService
             byte[] response = out.toByteArray();
             RoverImage roverImage = new RoverImage();
             roverImage.setImage(response);
+
+            String extension = urlString.substring(urlString.lastIndexOf(".") + 1);
+
+            roverImage.setFileType(extension);
+
             roverImageRepository.save(roverImage);
         }
         catch (Exception ex)
@@ -87,21 +93,21 @@ public class RoverImageCacheService
             Photo[] curiosityPhotoArray = curiosityPhotos.getPhotos();
             for(int j = 0; j < curiosityPhotoArray.length; j++)
             {
-                imageUrls.add(curiosityPhotoArray[j].getImgSrc());
+                imageUrls.add(curiosityPhotoArray[j].getImgSrc().replaceFirst("http:", "https:"));
             }
 
             Photos opportunityPhotos = getRoverImageDataOnDate("opportunity", dates.get(i));
             Photo[] opportunityPhotoArray = opportunityPhotos.getPhotos();
             for(int j = 0; j < opportunityPhotoArray.length; j++)
             {
-                imageUrls.add(opportunityPhotoArray[j].getImgSrc());
+                imageUrls.add(opportunityPhotoArray[j].getImgSrc().replaceFirst("http:", "https:"));
             }
 
             Photos spiritPhotos = getRoverImageDataOnDate("spirit", dates.get(i));
             Photo[] spiritPhotoArray = spiritPhotos.getPhotos();
             for(int j = 0; j < spiritPhotoArray.length; j++)
             {
-                imageUrls.add(spiritPhotoArray[j].getImgSrc());
+                imageUrls.add(spiritPhotoArray[j].getImgSrc().replaceFirst("http:", "https:"));
             }
         }
 

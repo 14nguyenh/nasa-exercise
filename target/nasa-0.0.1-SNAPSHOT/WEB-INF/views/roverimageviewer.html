@@ -4,7 +4,7 @@
     <title>Rover Image Viewer</title>
 </head>
 <body>
-<h1>Rover Image Viewer thyme</h1>
+<h1>Rover Image Viewer</h1>
 <form method="POST" action="roverimageviewer">
     <table>
         <input type="submit" value="Clear Images" />
@@ -12,7 +12,14 @@
 </form>
 <table>
     <tr th:each="image : ${images}">
-        <td><img th:src="'data:image/jpeg;base64,' + ${roverImageViewerService.getImgData(image)}" /></td>
+        <td th:text="${image.fileType}"></td>
+        <td>
+            <div th:switch="${image.fileType}">
+                <img th:case="'JPG'" th:src="'data:image/jpeg;base64,' + ${roverImageViewerService.getImgData(image.image)}" />
+                <img th:case="'jpg'" th:src="'data:image/jpeg;base64,' + ${roverImageViewerService.getImgData(image.image)}" />
+                <img th:case="'png'" th:src="'data:image/png;base64,' + ${roverImageViewerService.getImgData(image.image)}" />
+            </div>
+        </td>
     </tr>
 </table>
 <a href="roverimagecache">Back</a>

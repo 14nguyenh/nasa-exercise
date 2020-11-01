@@ -27,14 +27,13 @@ public class RoverImageViewerController
     @GetMapping("roverimageviewer")
     private String getRoverImageViewer(Model model)
     {
-        List<byte[]> imagesBytes = new ArrayList<byte[]>();
+        List<RoverImage> imagesList = new ArrayList<RoverImage>();
         final Iterable<RoverImage> images = roverImageRepository.findAll();
         for (RoverImage image : images)
         {
-            //do something with the image. add it to a model and send it back to the front end to be displayed by thymeleaf
-            imagesBytes.add(image.getImage());
+            imagesList.add(image);
         }
-        model.addAttribute("images", imagesBytes);
+        model.addAttribute("images", imagesList);
         model.addAttribute("roverImageViewerService", roverImageViewerService);
         return "roverimageviewer";
     }

@@ -11,6 +11,8 @@ public class RoverImage
     @GeneratedValue
     private Long id;
 
+    private String fileType;
+
     @Lob
     private byte[] image;
 
@@ -23,6 +25,17 @@ public class RoverImage
     {
         this.id = id;
     }
+
+    public String getFileType()
+    {
+        return fileType;
+    }
+
+    public void setFileType(String fileType)
+    {
+        this.fileType = fileType;
+    }
+
 
     public byte[] getImage()
     {
