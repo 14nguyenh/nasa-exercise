@@ -3,6 +3,7 @@ package com.resi.nasa.controller;
 import com.resi.nasa.model.entity.RoverImage;
 import com.resi.nasa.model.repository.RoverImageRepository;
 import com.resi.nasa.service.RoverImageViewerService;
+import com.resi.nasa.util.ImageUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,24 +18,20 @@ public class RoverImageViewerController
 {
     private RoverImageRepository roverImageRepository;
     private RoverImageViewerService roverImageViewerService;
+    private ImageUtil imageUtil;
 
-    public RoverImageViewerController(RoverImageRepository roverImageRepository, RoverImageViewerService roverImageViewerService)
+    public RoverImageViewerController(RoverImageRepository roverImageRepository, RoverImageViewerService roverImageViewerService, ImageUtil imageUtil)
     {
         this.roverImageRepository = roverImageRepository;
         this.roverImageViewerService = roverImageViewerService;
+        this.imageUtil = imageUtil;
     }
 
     @GetMapping("roverimageviewer")
     private String getRoverImageViewer(Model model)
     {
-        List<RoverImage> imagesList = new ArrayList<RoverImage>();
-        final Iterable<RoverImage> images = roverImageRepository.findAll();
-        for (RoverImage image : images)
-        {
-            imagesList.add(image);
-        }
-        model.addAttribute("images", imagesList);
-        model.addAttribute("roverImageViewerService", roverImageViewerService);
+        model.addAttribute("images", roverImageViewerService.getAllImages());
+        model.addAttribute("imageUtil", imageUtil);
         return "roverimageviewer";
     }
 

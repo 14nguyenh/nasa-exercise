@@ -15,8 +15,8 @@
         <td th:text="${image.fileType}"></td>
         <td>
             <div th:switch="${image.fileType}">
-                <img th:case="'jpg'" th:src="'data:image/jpeg;base64,' + ${roverImageViewerService.getImgData(image.image)}" />
-                <img th:case="'png'" th:src="'data:image/png;base64,' + ${roverImageViewerService.getImgData(image.image)}" />
+                <img th:case="'jpg'" th:src="'data:image/jpeg;base64,' + ${imageUtil.getImgData(image.image)}" />
+                <img th:case="'png'" th:src="'data:image/png;base64,' + ${imageUtil.getImgData(image.image)}" />
             </div>
         </td>
     </tr>
