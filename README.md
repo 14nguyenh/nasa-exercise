@@ -12,6 +12,6 @@ The application simply queries the nasa API for Curiosity, Opportunity, and Spir
 
 I am also not too familiar with Docker (I plan on taking a Docker course), but I was able to create a tomcat docker container and deploy the webapp by copying the .war file to the webapps directory.
 
-I've included my .idea project directory for Intellij. I am not sure if that copies my run configurations.
+I've included my .idea project directory for Intellij. I am not sure if that copies my run configurations. I've also included a dates.txt for an example input file that I basically just copied from the exercise prompt.
 
 Lastly, I hard-coded my Nasa API key. I wasn't sure what the best way of making this configurable was. I could work it into a properties file somehow or I could have exposed it as a setting on the webapp so that the user could configure it but for simplicity it is hard-coded.

@@ -74,7 +74,7 @@ public class RoverImageCacheService
 
             String extension = urlString.substring(urlString.lastIndexOf(".") + 1);
 
-            roverImage.setFileType(extension);
+            roverImage.setFileType(extension.toLowerCase());
 
             roverImageRepository.save(roverImage);
         }
@@ -138,8 +138,8 @@ public class RoverImageCacheService
             patternsToMatch.add(new SimpleDateFormat("MMM dd, yyyy"));
             patternsToMatch.add(new SimpleDateFormat("MMM-dd-yyyy"));
             patternsToMatch.add(new SimpleDateFormat("MMM-dd-yy"));
-            patternsToMatch.add(new SimpleDateFormat("MMM/yy/yyyy"));
-            patternsToMatch.add(new SimpleDateFormat("MMM/yy/yyyy"));
+            patternsToMatch.add(new SimpleDateFormat("MMM/dd/yyyy"));
+            patternsToMatch.add(new SimpleDateFormat("MMM/dd/yyyy"));
 
             //Parse string array into date array
             List<Date> dates = new ArrayList<Date>();
