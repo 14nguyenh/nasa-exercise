@@ -8,6 +8,8 @@ I noticed that with my primitive way of downloading these images, I ran into iss
 
 I also opted to store the images in a database, and served them up directly from there. I was asked if I knew about Spring Data and so I implemented this with h2 as a proof-of-concept to showcase that I did, but given the problem statement it would have been much easier to just download and store the files on disk in a static directory and serve them from there.
 
+The application simply queries the nasa API for Curiosity, Opportunity, and Spirit for photos on mars, receives a bunch of img_src URLs, downloads all those images and stores it in the DB. Then on the "View" page, it pulls all the images from the DB and displays them in a thymeleaf template. I didn't check to see if the image had already existed before downloading it, I re-download it everytime a file containing dates is uploaded. I could have used some identifying information from the JSON data to tag it and make a decision on whether or not to redownload.
+
 I am also not too familiar with Docker (I plan on taking a Docker course), but I was able to create a tomcat docker container and deploy the webapp by copying the .war file to the webapps directory.
 
 I've included my .idea project directory for Intellij. I am not sure if that copies my run configurations.
