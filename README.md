@@ -2,7 +2,7 @@
 
 This is my implementation of the exercise described at https://github.com/hawkescom/marsrover
 
-I decided to use Spring Boot. I am not an expert at it (yet) so there is a lot of java plumbing that could most likely be improved (the action of downloading the images). It also takes a significant amount of time to download all of the images (upwards of a few minutes) and my application blocks on this step. The user experience can be improved by using a message queue such as RabbitMQ to send a request to download the images, and redirect the user back instantly. The user would still have to wait for all the images to download, but they would be able to do other things while waiting.
+I decided to use Spring Boot. I am not an expert at it (yet) so there is a lot of java plumbing that could most likely be improved (the action of downloading the images). It also takes a significant amount of time to download all of the images (upwards of a few minutes) and my application blocks on this step. The user experience can be improved by using a message queue such as RabbitMQ to send a request to download the images, and redirect the user back instantly. The user would still have to wait for all the images to download, but they would be able to do other things while waiting. If I were to use RabbitMQ, I could also improve performance by multithreading the downloads, however that would only be a linear scale performance increase.
 
 I noticed that with my primitive way of downloading these images, I ran into issues with the img_src URLs when using a non-secure scheme (http:// instead of https://) because they redirected to the secure URL. As a work-around, I forced all the URLs to have a scheme of 'https://'.
 
